@@ -18,16 +18,20 @@
 
     <script>
         function loadConfig() {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var configText = xhr.responseText;
-                    configText = configText.replace(/\n/g, '<br>');
-                    document.getElementById("configContent").innerHTML = configText;
-                }
+            var configContent = document.getElementById("configContent");
+            var configObject = document.createElement("object");
+            configObject.setAttribute("data", "config.txt");
+            configObject.setAttribute("type", "text/plain");
+
+            // Добавляем объект к элементу с id "configContent"
+            configContent.appendChild(configObject);
+
+            // Заменяем символы новой строки на <br> после загрузки файла
+            configObject.onload = function () {
+                var configText = configObject.contentDocument.body.innerText;
+                configText = configText.replace(/\n/g, '<br>');
+                configContent.innerHTML = configText;
             };
-            xhr.open("GET", "config.txt", true);
-            xhr.send();
         }
     </script>
 </body>
