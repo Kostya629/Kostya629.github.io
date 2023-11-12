@@ -1,0 +1,2 @@
+domain = kostya629.github.io;
+//This is config file
