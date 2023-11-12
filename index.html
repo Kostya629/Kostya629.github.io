@@ -4,10 +4,10 @@
 <head>
     <title>Тестовая страница</title>
     <style>
-    body {
-     background: #333; /* Цвет фона */
-     color: #fc0; /* Цвет текста */
-    }
+        body {
+            background: #333; /* Цвет фона */
+            color: #fc0; /* Цвет текста */
+        }
     </style>
 </head>
 
@@ -21,7 +21,9 @@
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    document.getElementById("configContent").innerHTML = xhr.responseText;
+                    var configText = xhr.responseText;
+                    configText = configText.replace(/\n/g, '<br>');
+                    document.getElementById("configContent").innerHTML = configText;
                 }
             };
             xhr.open("GET", "config.txt", true);
