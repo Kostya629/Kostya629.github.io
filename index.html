@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Тестовая страница</title>
-    <h1>Приветики.</h1>
 </head>
+
 <body>
-    <button>Кнопочка</button>
+    <h1>Приветики.</h1>
+    <button onclick="loadConfig()">Загрузить конфиг</button>
+    <div id="configContent"></div>
+
+    <script>
+        function loadConfig() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("configContent").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open("GET", "config.txt", true);
+            xhr.send();
+        }
+    </script>
 </body>
+
 </html>
+
