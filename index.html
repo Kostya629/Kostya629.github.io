@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="ru">
 <head>
     <title>Тестовая страница</title>
     <style>
@@ -9,13 +8,6 @@
             color: #fc0; /* Цвет текста */
         }
     </style>
-</head>
-
-<body>
-    <h1>Guten Tag!</h1>
-    <button onclick="loadConfig()">Загрузить конфиг</button>
-    <div id="configContent"></div>
-
     <script>
         function loadConfig() {
             var configContent = document.getElementById("configContent");
@@ -34,7 +26,21 @@
             };
         }
     </script>
+</head>
+
+<body>
+<!-- Шапка страницы -->
+<header>
+    <h1>Guten Tag!</h1>
+</header>
+<!-- Основная часть страницы -->
+<div role="main">
+    <button onclick="loadConfig()">Загрузить конфиг</button>
+    <div id="configContent"></div>
+</div>
+<!-- Подвал страницы -->
+<footer>
+
+</footer>
 </body>
-
 </html>
-
