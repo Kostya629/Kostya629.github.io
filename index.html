@@ -1,1 +1,58 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Плавный радужный фон</title>
+    <style>
+        body {
+            animation: rainbow 10s linear infinite; /* Длительность анимации 10 секунд, бесконечное повторение */
+        }
+        
+        @keyframes rainbow {
+            0% { background-color: red; }
+            14% { background-color: orange; }
+            28% { background-color: yellow; }
+            42% { background-color: lime; }
+            57% { background-color: cyan; }
+            71% { background-color: blue; }
+            85% { background-color: purple; }
+            100% { background-color: red; }
+        }
+        
+        /* Стили для ползунка */
+        input[type="range"] {
+            width: 900px; /* Здесь можно установить желаемую ширину */
+        }
+    </style>
+</head>
+<body>
+    <h1>Плавный радужный фон</h1>
+    <p>Ссылка на гифку: <input type="text" id="imageURL" value="https://media.tenor.com/tKMqYZENFrcAAAAd/%D0%B0%D0%BC%D0%BE%D0%B3%D1%83%D1%81.gif">
+    <button id="applyButton">Применить</button></p>
+    <p>Размер гифки: <input type="range" id="imageSize" min="10" max="800" value="80" step="5"></p>
+    <img id="image" src="https://media.tenor.com/tKMqYZENFrcAAAAd/%D0%B0%D0%BC%D0%BE%D0%B3%D1%83%D1%81.gif" alt="gif" width="80" height="73">
+    
+    <script>
+        const imageURLInput = document.getElementById("imageURL");
+        const applyButton = document.getElementById("applyButton");
+        const imageSizeInput = document.getElementById("imageSize");
+        const image = document.getElementById("image");
+        
+        function updateImageSize() {
+            const imageURL = imageURLInput.value;
+            image.src = imageURL;
+            
+            image.onload = function() {
+                const imageSize = imageSizeInput.value;
+                image.style.width = imageSize + "px";
+                image.style.height = (image.naturalHeight * imageSize / image.naturalWidth) + "px";
+            };
+        }
+        
+        applyButton.addEventListener("click", updateImageSize);
+        imageSizeInput.addEventListener("input", updateImageSize);
+        
+        // Инициализация размера при загрузке страницы
+        updateImageSize();
+    </script>
+</body>
+</html>
